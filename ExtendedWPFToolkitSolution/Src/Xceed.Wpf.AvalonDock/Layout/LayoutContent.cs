@@ -888,9 +888,12 @@ namespace Xceed.Wpf.AvalonDock.Layout
     internal void CloseInternal()
     {
       var root = Root;
-      var parentAsContainer = Parent as ILayoutContainer;
-      parentAsContainer.RemoveChild( this );
-      if( root != null )
+      if (Parent != null)
+      {
+        var parentAsContainer = Parent as ILayoutContainer;
+        parentAsContainer.RemoveChild(this);
+      }
+      if (root != null)
         root.CollectGarbage();
 
       OnClosed();
